@@ -1,0 +1,22 @@
+{
+  "name": "websockets",
+  "version": "0.0.1",
+  "description": "Websockets Example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djfrsn/websockets.git"
+  },
+  "keywords": [
+    "websockets"
+  ],
+  "author": "Dennis Jefferson <me@dennisjefferson.com> (dennisjefferson.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djfrsn/websockets/issues"
+  },
+  "homepage": "https://github.com/djfrsn/websockets#readme"
+}
