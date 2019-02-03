@@ -1,11 +1,33 @@
+import { Component } from 'react';
+import io from 'socket.io-client';
+
 import Messages from '../components/messages';
+import SendMessageInput from '../components/sendMessageInput';
 import WebsocketApi from '../websocketApi';
 
-const Index = ({ messages }) => (
-  <div>
-    <Messages messages={messages} />
-  </div>
-);
+class Index extends Component {
+  // connect to WS server and listen event
+  componentDidMount() {
+    this.socket = io('http://localhost:3077');
+    this.socket.on('message', this.handleMessage);
+  }
+  // close socket connection
+  componentWillUnmount() {
+    this.socket.off('message', this.handleMessage);
+    this.socket.close();
+  }
+
+  render() {
+    const { messages } = this.props;
+
+    return (
+      <div>
+        {/* <SendMessageInput /> */}
+        <Messages messages={messages} />
+      </div>
+    );
+  }
+}
 
 Index.getInitialProps = async () => {
   const { messages } = await WebsocketApi.get.messages();
