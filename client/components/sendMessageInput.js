@@ -2,6 +2,9 @@ import { Component } from 'react';
 
 class SendMessageInput extends Component {
   // add messages from server to the state
+  state = {
+    field: ''
+  };
   handleMessage = message => {
     console.log('message', message);
   };
@@ -19,9 +22,10 @@ class SendMessageInput extends Component {
       id: new Date().getTime(),
       value: this.state.field
     };
+    console.log('this', this);
 
     // send object to WS server
-    this.socket.emit('message', message);
+    this.props.socket.emit('message', message);
 
     // add it to state and clean current input value
     this.setState(state => ({

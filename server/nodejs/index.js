@@ -1,22 +1,19 @@
-var express = require('express');
+const express = require('express');
 
-var app = express();
-var server = require('http').Server(app);
-const io = require('socket.io')(server);
+const cors = require('./lib/cors');
+const websocket = require('./lib/websockets');
+
+const app = express();
+const server = require('http').Server(app);
 
 const port = 3077;
-// fake db
-const messages = ['red', 'green', 'blue'];
 
-io.on('connection', function(socket) {
-  socket.on('message', data => {
-    messages.push(data);
-    socket.broadcast.emit('message', data);
-  });
-});
+cors(app);
+
+websocket.io(server);
 
 app.get('/', (req, res) => {
-  res.json({ messages });
+  res.json({ messages: websocket.messages });
 });
 
 app.listen(port, () => {
