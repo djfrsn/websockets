@@ -1,2 +1,5 @@
-nodejs/node_modules
-nodejs/*.marko.js
+client/node_modules
+client/.next
+client/.cache
+
+server/nodejs/node_modules
