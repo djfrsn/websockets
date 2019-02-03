@@ -1,5 +1,7 @@
 client/node_modules
 client/.next
 client/.cache
+client/yarn-error.log
 
 server/nodejs/node_modules
+server/nodejs/yarn-error.log
