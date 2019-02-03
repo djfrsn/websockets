@@ -16,7 +16,7 @@ io.on('connection', function(socket) {
 });
 
 app.get('/', (req, res) => {
-  res.send('ok!');
+  res.json({ messages });
 });
 
 app.listen(port, () => {

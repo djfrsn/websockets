@@ -1,4 +1,5 @@
 import Messages from '../components/messages';
+import WebsocketApi from '../websocketApi';
 
 const Index = ({ messages }) => (
   <div>
@@ -6,10 +7,10 @@ const Index = ({ messages }) => (
   </div>
 );
 
-Index.getInitialProps = () => {
-  console.log('arg', arguments);
+Index.getInitialProps = async () => {
+  const { messages } = await WebsocketApi.get.messages();
 
-  return { messages: ['hey'] };
+  return { messages };
 };
 
 export default Index;
