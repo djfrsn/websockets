@@ -3,7 +3,7 @@ const messages = [];
 
 module.exports.messages = messages;
 
-module.exports.io = function(io) {
+module.exports.connect = function(io) {
   io.on('connection', function(socket) {
     socket.on('message', data => {
       messages.push(data);

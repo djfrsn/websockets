@@ -1,7 +1,7 @@
 const express = require('express');
 
 const cors = require('./lib/cors');
-const websocket = require('./lib/websockets');
+const webSocket = require('./lib/webSocket');
 
 const app = express();
 const server = require('http').Server(app);
@@ -11,10 +11,10 @@ const port = 3077;
 
 cors(app);
 
-websocket.io(io);
+webSocket.connect(io);
 
 app.get('/', (req, res) => {
-  res.json({ messages: websocket.messages });
+  res.json({ messages: webSocket.messages });
 });
 
 server.listen(port, '127.0.0.1', () => {
