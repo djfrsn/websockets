@@ -5,3 +5,4 @@ client/yarn-error.log
 
 server/nodejs/node_modules
 server/nodejs/yarn-error.log
+server/nodejs/.env

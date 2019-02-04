@@ -5,6 +5,17 @@
 // Add Rooms
 // Add Private Rooms
 // Add "P2P" messaging
+var redis = require('redis');
+
+var client = redis.createClient({
+  port: process.env.IN_MEMORY_DB_PORT, // replace with your port
+  host: process.env.IN_MEMORY_DB, // replace with your hostanme or IP address
+  password: process.env.IN_MEMORY_DB_PW
+});
+
+client.on('connect', function() {
+  console.log('Redis client connected');
+});
 
 // fake db
 const messages = [];
