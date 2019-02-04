@@ -19,7 +19,4 @@ app.get('/', (req, res) => {
 
 server.listen(port, '127.0.0.1', () => {
   console.log(`Successfully started server on port ${port}`);
-  if (process.send) {
-    process.send('online');
-  }
 });
