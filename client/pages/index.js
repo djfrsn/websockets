@@ -20,6 +20,7 @@ class Index extends Component {
 
     this.socket.on('message', this.handleMessage);
 
+    console.log('props', this.props);
     this.setState({ socket: this.socket });
   }
   // close socket connection

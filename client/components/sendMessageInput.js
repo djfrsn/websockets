@@ -25,7 +25,7 @@ class SendMessageInput extends Component {
 
     // create message object
     const message = {
-      id: new Date().getTime(),
+      id: `${new Date().getTime()}`,
       value: this.state.field
     };
     console.log('this', message);
