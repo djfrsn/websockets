@@ -1,5 +1,7 @@
 import { Component } from 'react';
-import io from 'socket.io-client';
+import WebSocket from '../webSocket';
+
+const Socket = WebSocket();
 
 class SendMessageInput extends Component {
   // add messages from server to the state
@@ -7,7 +9,7 @@ class SendMessageInput extends Component {
     field: ''
   };
   componentDidMount() {
-    this.socket = io('http://localhost:3077');
+    this.socket = Socket.connect();
   }
   handleMessage = message => {
     console.log('message', message);

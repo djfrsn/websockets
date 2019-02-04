@@ -1,9 +1,10 @@
 import { Component } from 'react';
-import io from 'socket.io-client';
 
 import Messages from '../components/messages';
 import SendMessageInput from '../components/sendMessageInput';
-import WebsocketApi from '../websocketApi';
+import WebSocket from '../webSocket';
+
+const Socket = WebSocket();
 
 class Index extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Index extends Component {
   }
   // connect to WS server and listen event
   componentDidMount() {
-    this.socket = io('http://localhost:3077');
+    this.socket = Socket.connect();
 
     this.socket.on('message', this.handleMessage);
 
@@ -43,7 +44,7 @@ class Index extends Component {
 }
 
 Index.getInitialProps = async () => {
-  const { messages } = await WebsocketApi.get.messages();
+  const { messages } = await Socket.get.messages();
 
   return { messages };
 };
