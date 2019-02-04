@@ -1,3 +1,7 @@
+// TODO:
+// connect with in memory db
+// persist in mongodb w/ mongolab
+
 // fake db
 const messages = [];
 
