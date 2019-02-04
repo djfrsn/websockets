@@ -28,7 +28,6 @@ class SendMessageInput extends Component {
       id: `${new Date().getTime()}`,
       value: this.state.field
     };
-    console.log('this', message);
 
     // send object to WS server
     this.socket.emit('message', message);

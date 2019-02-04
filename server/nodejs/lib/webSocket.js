@@ -10,11 +10,16 @@ const addMessage = require('./redis').addMessage;
 
 module.exports.connect = function(io) {
   io.on('connection', function(socket) {
-    socket.on('message', data => {
-      // Add message to redis
-      addMessage(JSON.stringify(data));
-
-      socket.broadcast.emit('message', data);
-    });
+    setup(socket);
   });
 };
+
+function setup(socket) {
+  socket.on('message', data => onMessage(data, socket));
+}
+
+function onMessage(data, socket) {
+  addMessage(JSON.stringify(data));
+
+  socket.broadcast.emit('message', data);
+}
