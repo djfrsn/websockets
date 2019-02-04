@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.json({ messages: websocket.messages });
 });
 
-app.listen(port, () => {
+server.listen(port, '127.0.0.1', () => {
   console.log(`Successfully started server on port ${port}`);
   if (process.send) {
     process.send('online');
