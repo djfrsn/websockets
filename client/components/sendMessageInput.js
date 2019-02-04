@@ -45,7 +45,7 @@ class SendMessageInput extends Component {
         <input
           onChange={this.handleChange}
           type="text"
-          placeholder="Hello world!"
+          placeholder="Say something!"
           value={this.state.field}
         />
         <button>Send</button>
