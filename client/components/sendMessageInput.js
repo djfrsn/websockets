@@ -1,10 +1,14 @@
 import { Component } from 'react';
+import io from 'socket.io-client';
 
 class SendMessageInput extends Component {
   // add messages from server to the state
   state = {
     field: ''
   };
+  componentDidMount() {
+    this.socket = io('http://localhost:3077');
+  }
   handleMessage = message => {
     console.log('message', message);
   };
@@ -22,16 +26,15 @@ class SendMessageInput extends Component {
       id: new Date().getTime(),
       value: this.state.field
     };
-    console.log('this', this);
+    console.log('this', message);
 
     // send object to WS server
-    this.props.socket.emit('message', message);
+    this.socket.emit('message', message);
 
     // add it to state and clean current input value
-    this.setState(state => ({
-      field: '',
-      messages: state.messages.concat(message)
-    }));
+    this.setState({
+      field: ''
+    });
   };
 
   render() {

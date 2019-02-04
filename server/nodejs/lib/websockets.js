@@ -1,11 +1,9 @@
 // fake db
-const messages = ['red', 'green', 'blue'];
+const messages = [];
 
 module.exports.messages = messages;
 
-module.exports.io = function(server) {
-  const io = require('socket.io')(server);
-
+module.exports.io = function(io) {
   io.on('connection', function(socket) {
     socket.on('message', data => {
       messages.push(data);

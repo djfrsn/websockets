@@ -6,22 +6,36 @@ import SendMessageInput from '../components/sendMessageInput';
 import WebsocketApi from '../websocketApi';
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: props.messages
+    };
+  }
   // connect to WS server and listen event
   componentDidMount() {
     this.socket = io('http://localhost:3077');
-    debugger;
+
+    this.socket.on('message', this.handleMessage);
+
+    this.setState({ socket: this.socket });
   }
   // close socket connection
   componentWillUnmount() {
+    this.socket.off('message', this.handleMessage);
     this.socket.close();
   }
+  handleMessage = message => {
+    this.setState(state => ({ messages: state.messages.concat(message) }));
+  };
 
   render() {
-    const { messages } = this.props;
+    const { messages } = this.state;
 
     return (
       <div>
-        <SendMessageInput socket={this.socket} />
+        <SendMessageInput s />
         <Messages messages={messages} />
       </div>
     );
@@ -35,25 +49,3 @@ Index.getInitialProps = async () => {
 };
 
 export default Index;
-
-// import io from 'socket.io'
-
-// class {
-//   onCreate(input) {
-//     this.state = { messages: input.messages };
-//   }
-//   onMount() {
-//     this.socket = io("http://localhost:3077");
-
-//     this.socket.on("messages", message => {
-//       this.setState({
-//         messages: this.state.messages.concat(message)
-//       });
-//     });
-//   }
-//   sendMessage(e, el) {
-//     e.preventDefault();
-//     console.log("val", val, el);
-//     // this.socket.send("messages", val);
-//   }
-// }

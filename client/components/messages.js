@@ -1,11 +1,13 @@
 const Messages = ({ messages = [] }) => {
-  return messages.length
-    ? messages.map((message, i) => (
-        <ul key={i}>
-          <li>{message}</li>
-        </ul>
-      ))
-    : 'No Messages!';
+  return messages.length ? (
+    <ul>
+      {messages.map(({ value }, i) => (
+        <li key={i}>{value}</li>
+      ))}
+    </ul>
+  ) : (
+    'No Messages!'
+  );
 };
 
 export default Messages;
