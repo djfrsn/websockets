@@ -5,9 +5,11 @@ Server: Websocket server implemented in various languages
 Database: Redis
 NodeJs: Express, Socket.io
 
-## Install & Run in dev mode
+### NodeJS: Install & run
 Front End
+Dev Mode
 * cd client && npm install && npm run dev
 
 Server
+Dev Mode
 * cd server/nodejs && npm install && npm run dev
